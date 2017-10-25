@@ -65,7 +65,7 @@ export default class Inputs extends Component {
 
                 { this.state.loading &&  <ActivityIndicator /> }
 
-                <Button title = {this.state.loading ? "On":"Off"}
+                <Button title = {this.state.loading ? "Off":"On"}
                         onPress={() => this.setState({loading: !this.state.loading})}>
                 </Button>
 

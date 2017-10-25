@@ -49,12 +49,12 @@ export default class Cart extends React.Component {
     }
 
     removeItem(id) {
-        this.props.removeItemFromCart(id);
+        this.props.actions.removeItemFromCart(id);
     }
 
     updateItem(id, qty) {
         
-        this.props.updateItemInCart(id, qty);
+        this.props.actions.updateItemInCart(id, qty);
 
     }
 

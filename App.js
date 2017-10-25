@@ -7,11 +7,14 @@ import Cart from "./app/cart/containers/Cart";
 import { StyleSheet, Text, View } from 'react-native';
 
  
-import {StackNavigator} from "react-navigation";
+import {StackNavigator, TabNavigator} from "react-navigation";
 
 
 import {Provider} from "react-redux";
 import store from "./app/Store";
+
+
+import NativeFeature from "./app/native/Native";
 
 let Navigator = StackNavigator({
   Home: {
@@ -25,14 +28,29 @@ let Navigator = StackNavigator({
   initialRouteName: 'Home'
 });
 
- 
+let Tabs = TabNavigator({
+  Home: {
+    screen: Navigator
+  },
+
+  Cart: {
+    screen: Cart
+  },
+
+  Native: {
+    screen: NativeFeature
+  }
+}, {
+  initialRouteName: "Home"
+})
+
  
 export default class App extends React.Component {
   render() {
     return (
      <Provider store={store}> 
-       <Navigator>
-        </Navigator>
+       <Tabs>
+        </Tabs>
      </Provider>
 
 

@@ -1,6 +1,9 @@
 import {connect} from "react-redux";
 import Cart from "../components/Cart";
 
+import {bindActionCreators} from "redux";
+
+
 import * as actions from "../Actions";
  
 //called by container
@@ -17,10 +20,16 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         //propName: function(){}
-        addItemToCart : function(item) {
-                         let action = actions.addItemToCart(item);
-                         dispatch(action);
-                       }
+        // addItemToCart : function(item) {
+        //                  let action = actions.addItemToCart(item);
+        //                  dispatch(action);
+        //                }
+
+        addItemToCart : bindActionCreators(actions.addItemToCart, dispatch),
+
+        //group of actions
+        //in comp => this.props.actions.updateItemInCart, removeItem..
+        actions: bindActionCreators(actions, dispatch)
     }
 }
 
