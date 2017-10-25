@@ -2,7 +2,10 @@ import * as ActionTypes from "./ActionTypes";
 
 const INITIAL_STATE = []
 
-export default function cartReducer(state=INITIAL_STATE, action) {
+//called by store
+//when ? during dispatch
+export default function cartReducer(state=INITIAL_STATE,
+                                    action) {
     console.log("cart reducer", state, action);
 
     switch(action.type) {

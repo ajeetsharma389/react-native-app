@@ -1,10 +1,10 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 
 import {View, Text, FlatList, ScrollView} from "react-native";
 
 import CartItem from "./CartItem";
 
-export default class CartList extends Component {
+export default class CartList extends PureComponent {
     constructor(props) {
         super(props);
         this._renderItem = this._renderItem.bind(this);
@@ -19,16 +19,16 @@ export default class CartList extends Component {
     //called when
     //when parent render called 
     //when this.setState called
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("cart list should update");
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("cart list should update");
        
-        //shalow compare
-        if (nextProps.items !== this.props.items) {
-            return true; //calls render
-        }
+    //     //shalow compare
+    //     if (nextProps.items !== this.props.items) {
+    //         return true; //calls render
+    //     }
 
-        return false; //do not call render
-    }
+    //     return false; //do not call render
+    // }
 
     _renderItem({item}) {
         console.log("render item");

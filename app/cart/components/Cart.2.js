@@ -5,6 +5,9 @@ import {View, Text, Button, StyleSheet} from "react-native";
 import CartList from "./CartList";
 import CartSummary from "./CartSummary";
 
+import * as actions from "../Actions";
+
+import store from "../../Store";
 
 export default class Cart extends React.Component {
 
@@ -26,7 +29,11 @@ export default class Cart extends React.Component {
     }
 
     componentDidMount() {
-     
+      //console.log("Coupon ", this.props.navigation.state.params.coupon);
+    
+      store.subscribe( () => {
+            this.forceUpdate();
+      })
     
     }
 
@@ -40,21 +47,54 @@ export default class Cart extends React.Component {
             price: Math.ceil(20 + Math.random() * 100),
             qty: 1
         }
- 
-        console.log(item.id, " added");
- 
 
-        this.props.addItemToCart(item);
+        //BAD
+        //Mutable list
+        //this.state.items.push(item);
+
+        console.log(item.id, " added");
+
+        //BAD
+        //trigger render method
+        //this.forceUpdate();
+
+        //GOOD
+
+        //triggers render
+        // this.setState({
+        //     items: [...this.state.items, item]
+        // });
+
+        let action = actions.addItemToCart(item);
+        //{type: 'ADD_ITEMT_CART', payload: {item: {name: }}
+
+
+        store.dispatch(action);
 
     }
 
     removeItem(id) {
-        this.props.removeItemFromCart(id);
+        // this.setState({
+        //     items: this.state.items.filter ( item => item.id != id)
+        // })
+
+        store.dispatch(actions.removeItemFromCart(id));
     }
 
     updateItem(id, qty) {
-        
-        this.props.updateItemInCart(id, qty);
+        // console.log("update ", id, qty);
+        // let items = this.state.items.map ( item => {
+        //     if (item.id != id)
+        //         return item;
+            
+        //     return Object.assign ({}, item, {qty: qty})
+        // });
+
+        // this.setState({
+        //     items: items
+        // });
+
+        store.dispatch(actions.updateItemInCart(id, qty));
 
     }
 
@@ -70,9 +110,18 @@ export default class Cart extends React.Component {
     render() {
 
         console.log("cart render");
- 
 
-        let items = this.props.items;
+        //let items = store.getState();
+        //single reducer => [{id: 1, name: ..}]
+        
+
+        let state = store.getState();
+        //state => { 
+        //  cartItems: [{id: 1, name:..}]
+        //  auth: {}
+        // }
+
+        //this.props.title  = "junk";
          
         return (
                 <View style={styles.container}>

@@ -10,6 +10,15 @@ export function addItemToCart(item) {
     }
 }
 
+// let action = addItemToCart({id: 1, name: 'p1'});
+
+// action => {
+//     type: 'ADD_ITEM_TO_CART',
+//     payload: {
+//         item: {id: 1, name: 'p1'}
+//     }
+// }
+
 //TODO: removeItemFromCart(id)
 export function removeItemFromCart(id) {
     return {

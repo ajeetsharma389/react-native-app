@@ -6,8 +6,9 @@ import Cart from "./app/cart/containers/Cart";
 
 import { StyleSheet, Text, View } from 'react-native';
 
- 
-import {StackNavigator} from "react-navigation";
+import FeatureStackNavigator from "./app/native/Native";
+
+import {StackNavigator, TabNavigator} from "react-navigation";
 
 
 import {Provider} from "react-redux";
@@ -25,7 +26,18 @@ let Navigator = StackNavigator({
   initialRouteName: 'Home'
 });
 
- 
+
+const AppTabNavigator = TabNavigator({
+  Home: {
+    screen: Navigator
+  },
+  Cart : {
+    screen: Cart
+  },
+  Native: {
+    screen: FeatureStackNavigator
+  }
+})
  
 export default class App extends React.Component {
   render() {
