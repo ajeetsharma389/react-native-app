@@ -63,7 +63,7 @@ export default class FileSys extends Component {
         var path = docDirectoryPath + '/test.txt';
 
         // write the file
-        RNFS.writeFile(path, 'Lorem ipsum dolor sit amet', 'utf8')
+        RNFS.writeFile(path, '{"counter": 1}', 'utf8')
         .then((success) => {
             console.log('FILE WRITTEN!');
             Alert.alert("Written file");

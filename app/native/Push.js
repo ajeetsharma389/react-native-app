@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Picker, AppState, Platform } from 'react-native';
+import { View, Text, StyleSheet, Picker, 
+  AppState, Platform } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 const styles = StyleSheet.create({
@@ -32,6 +33,14 @@ export default class Push extends Component {
       seconds: 5,
     };
   }
+
+  //TODO: specific routing on notification
+  //TODO: handling resources dynamically
+  //TODO: BARCODE []
+  //TODO: Network connection on or off
+  //TODO: webview
+  //TODO: SQLite
+  //DEbugging VS [PPT]
 
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);

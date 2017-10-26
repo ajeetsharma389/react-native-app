@@ -41,6 +41,7 @@ export default class UrlLink extends Component {
     }
 
     openMap() {
+         
         if (Platform.OS == 'android') {
             this.openLink('geo:37.484847,-122.148386')
         }

@@ -19,6 +19,7 @@ export default class GeoLoc extends Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
+      //success
       (position) => {
         this.setState({
           latitude: position.coords.latitude,
@@ -26,7 +27,11 @@ export default class GeoLoc extends Component {
           error: null,
         });
       },
+
+      //error
       (error) => this.setState({ error: error.message }),
+
+      //options
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
   }
